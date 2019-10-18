@@ -41,7 +41,7 @@ class CalorieTrackerTableViewController: UITableViewController {
     // MARK: Private Methods
     
     private func setViews() {
-        let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+        let rect = CGRect(x: 0, y: 0, width: 414, height: 400)
         
         chart.frame = rect
         chartView.addSubview(chart)
@@ -85,9 +85,18 @@ class CalorieTrackerTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "AddEntry" {
+            guard let destinationVC = segue.destination as? AddEntryViewController else {return}
+            let ppc = destinationVC.popoverPresentationController
+            if let button = sender as? UIButton {
+                ppc?.sourceView = button
+                ppc?.sourceRect = button.bounds
+                ppc?.backgroundColor = .black
+            }
+            ppc?.delegate = self as? UIPopoverPresentationControllerDelegate
+        }
     }
 }
+
 
 
