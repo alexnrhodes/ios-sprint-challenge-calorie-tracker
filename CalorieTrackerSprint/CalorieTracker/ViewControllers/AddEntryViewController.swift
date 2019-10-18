@@ -9,6 +9,8 @@
 import UIKit
 
 class AddEntryViewController: UIViewController {
+    
+    var entryController: EntryController?
 
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
@@ -25,8 +27,10 @@ class AddEntryViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         
+       guard let calories = caloriesTextField.text,
+        !calories.isEmpty else { return }
+        
+        entryController?.createEntry(with: Double(calories)!)
+        dismiss(animated: true, completion: nil)
     }
-    
-    
-
 }

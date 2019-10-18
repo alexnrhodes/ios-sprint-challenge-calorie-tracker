@@ -18,8 +18,8 @@ class CalorieTrackerTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    let series = [Double]()
-    
+    let entryControlller = EntryController()
+  
     var chart = Chart() {
         didSet {
             setViews()
@@ -41,30 +41,33 @@ class CalorieTrackerTableViewController: UITableViewController {
     // MARK: Private Methods
     
     private func setViews() {
-        let rect = CGRect(x: 0, y: 0, width: 414, height: 400)
         
+        let rect = CGRect(x: 0, y: 0, width: 414, height: 275)
         chart.frame = rect
+        chart.add(ChartSeries(entryControlller.series))
         chartView.addSubview(chart)
         
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return entryControlller.entries.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath)
         
-        // Configure the cell...
+        let entry = entryControlller.entries[indexPath.row]
+        cell.textLabel?.text = String(entry.calories)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.timeZone = .current
+        let date = dateFormatter.string(from: entry.date!)
+        cell.detailTextLabel?.text = date
         
         return cell
     }
@@ -87,6 +90,7 @@ class CalorieTrackerTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddEntry" {
             guard let destinationVC = segue.destination as? AddEntryViewController else {return}
+            destinationVC.entryController = entryControlller
             let ppc = destinationVC.popoverPresentationController
             if let button = sender as? UIButton {
                 ppc?.sourceView = button

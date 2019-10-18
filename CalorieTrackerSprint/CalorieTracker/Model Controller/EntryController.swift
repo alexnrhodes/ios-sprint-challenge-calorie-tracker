@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import SwiftChart
 
 class EntryController {
+    
+    var entries = [Entry]()
+    
+    var series = [Double]() 
     
     
     // MARK: CRUD
@@ -17,6 +22,13 @@ class EntryController {
         
         let entry = Entry(calories: calories)
         CoreDataStack.shared.save()
+        
+        entries.append(entry)
+        
+       let mapResult = entries.map { value in
+            value.calories
+        }
+        self.series = mapResult
     }
     
     func updateEntry() {
