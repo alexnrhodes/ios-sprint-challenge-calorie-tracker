@@ -51,7 +51,7 @@ class CalorieTrackerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    setViews()
+        setViews()
         
     }
     
@@ -61,11 +61,9 @@ class CalorieTrackerTableViewController: UITableViewController {
     }
     // MARK: Private Methods
     
-    private func setViews(section: Int) {
+    private func setViews() {
         
-        fetch.sections?[section].objects.map{ (value) in
-            
-        }
+        
         
         let mapResult = fetch.fetchedObjects.map { (value) in
             value.map { (entry) in
