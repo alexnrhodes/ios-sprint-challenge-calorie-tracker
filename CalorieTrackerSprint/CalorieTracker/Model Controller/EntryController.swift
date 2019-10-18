@@ -12,9 +12,7 @@ import CoreData
 
 class EntryController {
     
-    var entries = [Entry]()
-    
-    var series = [Double]()
+
     
     // MARK: CRUD
     
@@ -22,19 +20,9 @@ class EntryController {
         
         let entry = Entry(calories: calories)
         CoreDataStack.shared.save()
-        
-        entries.append(entry)
-        
-        let mapResult = entries.map { value in
-            value.calories
-        }
-        self.series = mapResult
-    }
     
-    func updateEntry() {
-        
     }
-    
+  
     func delete(entry: Entry) {
         let context = CoreDataStack.shared.mainContext
         
@@ -46,7 +34,8 @@ class EntryController {
         }
     }
     
-    func fetchEntry() {
+    func update(entry: Entry, calories: Double) {
         
     }
+   
 }

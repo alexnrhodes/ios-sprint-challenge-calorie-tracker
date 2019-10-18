@@ -55,7 +55,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dWo-68-Y58">
                             <connections>
                                 <action selector="addEntryButtonTapped:" destination="lCS-mL-5c9" id="cjr-fi-htZ"/>
-                                <segue destination="NkL-uD-NNK" kind="popoverPresentation" popoverAnchorBarButtonItem="dWo-68-Y58" id="l0a-Gj-UNF">
+                                <segue destination="NkL-uD-NNK" kind="popoverPresentation" identifier="AddEntry" popoverAnchorBarButtonItem="dWo-68-Y58" id="l0a-Gj-UNF">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -68,7 +68,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C0-O6-WKr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808.69565217391312" y="120.53571428571428"/>
+            <point key="canvasLocation" x="872" y="121"/>
         </scene>
         <!--Add Entry View Controller-->
         <scene sceneID="f9O-QL-30a">
@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22u-73-VTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1659" y="-127"/>
+            <point key="canvasLocation" x="1666" y="-96"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PiP-qH-Qeb">

@@ -19,8 +19,10 @@ class CalorieTrackerTableViewController: UITableViewController {
     
     // MARK: Properties
     
+    var series = [Double]()
+    
     let entryControlller = EntryController()
-  
+    
     var chart = Chart() {
         didSet {
             setViews()
@@ -28,49 +30,69 @@ class CalorieTrackerTableViewController: UITableViewController {
     }
     
     lazy var fetch: NSFetchedResultsController<Entry> = {
-              
-              let request: NSFetchRequest<Entry> = Entry.fetchRequest()
-              request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-              // basically sorts everything
-              let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: "date", cacheName: nil)
-              
-              frc.delegate = self
-              
-              do {
-                  try frc.performFetch()
-              } catch {
-                  fatalError("Error performing fetch for frc: \(error)")
-              }
-              
-              return frc
-          
-          }()
-       
+        
+        let request: NSFetchRequest<Entry> = Entry.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        // basically sorts everything
+        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: "date", cacheName: nil)
+        
+        frc.delegate = self
+        
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Error performing fetch for frc: \(error)")
+        }
+        
+        return frc
+        
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    setViews()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setViews()
-        
     }
-    
-    // MARK: IBActions
-    @IBAction func addEntryButtonTapped(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    
     // MARK: Private Methods
     
-    private func setViews() {
+    private func setViews(section: Int) {
+        
+        fetch.sections?[section].objects.map{ (value) in
+            
+        }
+        
+        let mapResult = fetch.fetchedObjects.map { (value) in
+            value.map { (entry) in
+                entry.calories
+            }
+        }
+        
+        if let seriesValues = mapResult {
+            series = seriesValues
+        }
+        
+        chart.add(ChartSeries(series))
+
         
         let rect = CGRect(x: 0, y: 0, width: 414, height: 275)
         chart.frame = rect
-        chart.add(ChartSeries(entryControlller.series))
         chartView.addSubview(chart)
+        
+        
         
     }
     
     // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return fetch.sections?.count ?? 1
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
