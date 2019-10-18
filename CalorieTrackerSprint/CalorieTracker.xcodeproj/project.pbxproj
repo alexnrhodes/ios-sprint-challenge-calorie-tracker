@@ -17,6 +17,8 @@
 		3844276923595FA30087C412 /* Entry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3844276723595FA30087C412 /* Entry.xcdatamodeld */; };
 		3844276B235964000087C412 /* Entry+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3844276A235964000087C412 /* Entry+Convenience.swift */; };
 		3844276D235965530087C412 /* EntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3844276C235965530087C412 /* EntryController.swift */; };
+		38442771235A0F440087C412 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38442770235A0F440087C412 /* ChartView.swift */; };
+		38EFAB7C235A1F4B008C2A99 /* AddEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EFAB7B235A1F4B008C2A99 /* AddEntryViewController.swift */; };
 		76DA9A026C6D11FC5156672D /* Pods_CalorieTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E315815F37B5B126796671FA /* Pods_CalorieTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,9 @@
 		3844276823595FA30087C412 /* Entry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Entry.xcdatamodel; sourceTree = "<group>"; };
 		3844276A235964000087C412 /* Entry+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+Convenience.swift"; sourceTree = "<group>"; };
 		3844276C235965530087C412 /* EntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryController.swift; sourceTree = "<group>"; };
+		38442770235A0F440087C412 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		38442773235A0FD60087C412 /* SwiftChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38EFAB7B235A1F4B008C2A99 /* AddEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewController.swift; sourceTree = "<group>"; };
 		3FC3A94733CF0995F656373E /* Pods-CalorieTracker-CalorieTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieTracker-CalorieTrackerUITests.release.xcconfig"; path = "Target Support Files/Pods-CalorieTracker-CalorieTrackerUITests/Pods-CalorieTracker-CalorieTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		821694C3E458EEAA4455CACC /* Pods-CalorieTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieTracker.debug.xcconfig"; path = "Target Support Files/Pods-CalorieTracker/Pods-CalorieTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		E315815F37B5B126796671FA /* Pods_CalorieTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalorieTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,11 +81,12 @@
 			children = (
 				3844276623595F4B0087C412 /* Model */,
 				3844276E2359659B0087C412 /* Model Controller */,
+				3844276F235A0F170087C412 /* Helpers */,
 				38442760235958FD0087C412 /* Storyboards */,
+				384427632359598F0087C412 /* ViewControllers */,
+				38442772235A0F6B0087C412 /* Custom Views */,
 				3844275F235958ED0087C412 /* Resources */,
 				3844274B235958DF0087C412 /* Info.plist */,
-				384427632359598F0087C412 /* ViewControllers */,
-				3844276423595A0D0087C412 /* CoreDataStack.swift */,
 			);
 			path = CalorieTracker;
 			sourceTree = "<group>";
@@ -108,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				384427612359598A0087C412 /* CalorieTrackerTableViewController.swift */,
+				38EFAB7B235A1F4B008C2A99 /* AddEntryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -129,6 +136,22 @@
 			path = "Model Controller";
 			sourceTree = "<group>";
 		};
+		3844276F235A0F170087C412 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3844276423595A0D0087C412 /* CoreDataStack.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		38442772235A0F6B0087C412 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				38442770235A0F440087C412 /* ChartView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		75B8666D59873DA6E2977921 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				E315815F37B5B126796671FA /* Pods_CalorieTracker.framework */,
+				38442773235A0FD60087C412 /* SwiftChart.framework */,
 				E57004168FC3E28B8979643F /* Pods_CalorieTracker_CalorieTrackerUITests.framework */,
 			);
 			name = Frameworks;
@@ -270,7 +294,9 @@
 				38442740235958D90087C412 /* SceneDelegate.swift in Sources */,
 				3844276923595FA30087C412 /* Entry.xcdatamodeld in Sources */,
 				3844276B235964000087C412 /* Entry+Convenience.swift in Sources */,
+				38EFAB7C235A1F4B008C2A99 /* AddEntryViewController.swift in Sources */,
 				3844276523595A0D0087C412 /* CoreDataStack.swift in Sources */,
+				38442771235A0F440087C412 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RCQFNX9QQ7;
 				INFOPLIST_FILE = CalorieTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -438,6 +465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RCQFNX9QQ7;
 				INFOPLIST_FILE = CalorieTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

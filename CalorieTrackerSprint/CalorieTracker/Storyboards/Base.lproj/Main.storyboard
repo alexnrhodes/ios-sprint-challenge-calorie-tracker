@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rUm-gd-EqB">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Calorie Tracker-->
         <scene sceneID="Kgu-TM-AXN">
             <objects>
-                <tableViewController id="lCS-mL-5c9" sceneMemberID="viewController">
+                <tableViewController id="lCS-mL-5c9" customClass="CalorieTrackerTableViewController" customModule="CalorieTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ydK-dn-3Px">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="tJM-fT-Fvl">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="tJM-fT-Fvl" customClass="ChartView" customModule="CalorieTracker" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EntryCell" id="it8-o2-qZD">
-                                <rect key="frame" x="0.0" y="303" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="303" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="it8-o2-qZD" id="yjs-io-Hxa">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -34,11 +38,98 @@
                             <outlet property="delegate" destination="lCS-mL-5c9" id="PLj-JR-8g6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Calorie Tracker" id="80T-lN-xyK"/>
+                    <navigationItem key="navigationItem" title="Calorie Tracker" id="80T-lN-xyK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dWo-68-Y58">
+                            <connections>
+                                <action selector="addEntryButtonTapped:" destination="lCS-mL-5c9" id="cjr-fi-htZ"/>
+                                <segue destination="NkL-uD-NNK" kind="popoverPresentation" popoverAnchorBarButtonItem="dWo-68-Y58" id="l0a-Gj-UNF">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="AddBarButtonItem" destination="dWo-68-Y58" id="XV6-y6-0Hk"/>
+                        <outlet property="chartView" destination="tJM-fT-Fvl" id="5Cp-To-N40"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C0-O6-WKr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="808.69565217391312" y="120.53571428571428"/>
+        </scene>
+        <!--Add Entry View Controller-->
+        <scene sceneID="f9O-QL-30a">
+            <objects>
+                <viewController id="NkL-uD-NNK" customClass="AddEntryViewController" customModule="CalorieTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bEe-Ib-wgY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="wSQ-5o-cje">
+                                <rect key="frame" x="20" y="54" width="335" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a meal!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bz5-nD-QrA">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S4X-iU-NAW">
+                                        <rect key="frame" x="0.0" y="58" width="335" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="109" translatesAutoresizingMaskIntoConstraints="NO" id="tSP-Yn-vng">
+                                <rect key="frame" x="20" y="186" width="335" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwF-D5-756">
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="NkL-uD-NNK" eventType="touchUpInside" id="y0h-0g-Axz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTM-f5-gKe">
+                                        <rect key="frame" x="222" y="0.0" width="113" height="30"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="NkL-uD-NNK" eventType="touchUpInside" id="tnS-kZ-ZHD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hTM-f5-gKe" secondAttribute="bottom" id="ITa-6I-SDE"/>
+                                    <constraint firstItem="hTM-f5-gKe" firstAttribute="top" secondItem="tSP-Yn-vng" secondAttribute="top" id="TVZ-Pz-oYN"/>
+                                    <constraint firstItem="SwF-D5-756" firstAttribute="top" secondItem="tSP-Yn-vng" secondAttribute="top" id="ee9-Dq-iFf"/>
+                                    <constraint firstAttribute="bottom" secondItem="SwF-D5-756" secondAttribute="bottom" id="l1y-es-wtw"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tSP-Yn-vng" firstAttribute="bottom" secondItem="gwO-IY-Ch0" secondAttribute="bottom" id="5O0-Uj-zvk"/>
+                            <constraint firstItem="wSQ-5o-cje" firstAttribute="leading" secondItem="gwO-IY-Ch0" secondAttribute="leading" constant="20" id="GxR-Hj-dcg"/>
+                            <constraint firstItem="tSP-Yn-vng" firstAttribute="leading" secondItem="gwO-IY-Ch0" secondAttribute="leading" constant="20" id="VzA-Oq-ajI"/>
+                            <constraint firstItem="tSP-Yn-vng" firstAttribute="top" secondItem="S4X-iU-NAW" secondAttribute="bottom" constant="44" id="bdQ-r2-w3R"/>
+                            <constraint firstItem="wSQ-5o-cje" firstAttribute="top" secondItem="gwO-IY-Ch0" secondAttribute="top" constant="10" id="beK-gF-b1D"/>
+                            <constraint firstItem="gwO-IY-Ch0" firstAttribute="trailing" secondItem="tSP-Yn-vng" secondAttribute="trailing" constant="20" id="cd8-xs-PZi"/>
+                            <constraint firstItem="gwO-IY-Ch0" firstAttribute="trailing" secondItem="wSQ-5o-cje" secondAttribute="trailing" constant="20" id="rzP-EV-UJL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gwO-IY-Ch0"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="250"/>
+                    <connections>
+                        <outlet property="caloriesTextField" destination="S4X-iU-NAW" id="sjI-Yv-FD6"/>
+                        <outlet property="cancelButton" destination="SwF-D5-756" id="yd6-za-zB9"/>
+                        <outlet property="saveButton" destination="hTM-f5-gKe" id="PRN-B2-fgv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="22u-73-VTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1659" y="-127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PiP-qH-Qeb">
