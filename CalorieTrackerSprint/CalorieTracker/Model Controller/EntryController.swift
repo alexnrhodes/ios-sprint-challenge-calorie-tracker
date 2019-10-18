@@ -8,13 +8,13 @@
 
 import Foundation
 import SwiftChart
+import CoreData
 
 class EntryController {
     
     var entries = [Entry]()
     
-    var series = [Double]() 
-    
+    var series = [Double]()
     
     // MARK: CRUD
     
@@ -25,7 +25,7 @@ class EntryController {
         
         entries.append(entry)
         
-       let mapResult = entries.map { value in
+        let mapResult = entries.map { value in
             value.calories
         }
         self.series = mapResult
@@ -35,8 +35,15 @@ class EntryController {
         
     }
     
-    func deleteEntry() {
+    func delete(entry: Entry) {
+        let context = CoreDataStack.shared.mainContext
         
+        context.performAndWait {
+            
+            context.delete(entry)
+            CoreDataStack.shared.save()
+            
+        }
     }
     
     func fetchEntry() {
