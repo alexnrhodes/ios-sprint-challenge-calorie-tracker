@@ -52,7 +52,7 @@ class CalorieTrackerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
-        
+        self.observeChartSeriesChanged()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,9 +61,17 @@ class CalorieTrackerTableViewController: UITableViewController {
     }
     // MARK: Private Methods
     
+    @objc private func refreshViews(notification: Notification) {
+        
+        setViews()
+    }
+    
+    private func observeChartSeriesChanged() {
+        // Notifying the listeners
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshViews), name: .chartSeriesChanged, object: nil)
+    }
+    
     private func setViews() {
-        
-        
         
         let mapResult = fetch.fetchedObjects.map { (value) in
             value.map { (entry) in
@@ -76,7 +84,6 @@ class CalorieTrackerTableViewController: UITableViewController {
         }
         
         chart.add(ChartSeries(series))
-
         
         let rect = CGRect(x: 0, y: 0, width: 414, height: 275)
         chart.frame = rect
@@ -89,7 +96,7 @@ class CalorieTrackerTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetch.sections?.count ?? 1
+        return fetch.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

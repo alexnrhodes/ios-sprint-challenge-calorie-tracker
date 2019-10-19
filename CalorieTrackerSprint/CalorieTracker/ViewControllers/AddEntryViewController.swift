@@ -31,6 +31,7 @@ class AddEntryViewController: UIViewController {
         !calories.isEmpty else { return }
         
         entryController?.createEntry(with: Double(calories)!)
+        NotificationCenter.default.post(name: .chartSeriesChanged, object: self)
         dismiss(animated: true, completion: nil)
     }
 }
